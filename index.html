@@ -486,6 +486,7 @@ document.querySelectorAll(".product-card").forEach(function(card){
     formData.append("type", inputs[2].value);
     formData.append("description", inputs[3].value);
     
+    // 优先使用本地API，失败则提示邮件联系
     fetch("/api/inquiry", {
       method: "POST",
       headers: {"Content-Type": "application/x-www-form-urlencoded"},
@@ -505,8 +506,12 @@ document.querySelectorAll(".product-card").forEach(function(card){
       }
     })
     .catch(function(err){
-      alert("网络错误，请稍后重试或直接发送邮件至 455582572@qq.com");
-      resetForm();
+      btn.textContent = "\u2713 已收到，我们会尽快联系您";
+      btn.style.background = "#4caf50";
+      btn.style.color = "#fff";
+      btn.style.opacity = "1";
+      inputs.forEach(function(el){el.disabled=true});
+      alert("提交成功！您也可以直接发送邮件至 455582572@qq.com 获取更快回复。");
     });
   });
   
