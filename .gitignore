@@ -1,0 +1,5 @@
+node_modules/
+mail-queue.jsonl
+mail-sent.jsonl
+inquiries.log
+*.log

@@ -1,0 +1,528 @@
+﻿<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>钛界 Titanium World | 钛合金定制配件</title>
+<style>
+/* ===== reset & base ===== */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:"PingFang SC","Microsoft YaHei","Helvetica Neue",sans-serif;color:#2c2c2c;background:#fafaf8;line-height:1.7}
+
+/* ===== nav ===== */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(255,255,255,0.92);backdrop-filter:blur(12px);border-bottom:1px solid #e8e8e4;padding:0 40px;display:flex;align-items:center;justify-content:space-between;height:64px}
+.nav-brand{display:flex;align-items:center;gap:10px;text-decoration:none}
+.nav-brand svg{height:36px}
+.nav-links{display:flex;gap:32px;list-style:none}
+.nav-links a{text-decoration:none;color:#555;font-size:14px;font-weight:500;transition:color .2s}
+.nav-links a:hover{color:#1a1a1a}
+.nav-cta{background:#2c2c2c;color:#fff!important;padding:8px 20px;border-radius:6px;transition:all .2s}
+.nav-cta:hover{background:#4a4a4a!important;color:#fff!important}
+.menu-toggle{display:none;background:none;border:none;cursor:pointer;padding:6px;border-radius:6px;transition:background .2s}
+.menu-toggle:hover{background:#f5f5f5}
+
+/* ===== sections ===== */
+section{padding:100px 40px;max-width:1200px;margin:0 auto}
+
+/* ===== hero ===== */
+.hero{min-height:90vh;display:flex;flex-direction:column;justify-content:center;align-items:flex-start;padding-top:64px;background:#f0efeb url(images/hero-bg.jpg) center/cover no-repeat;position:relative}.hero::before{content:"";position:absolute;top:0;left:0;right:0;bottom:0;background:linear-gradient(135deg,rgba(250,250,248,0.35) 0%,rgba(240,239,235,0.25) 50%,rgba(232,230,224,0.35) 100%);pointer-events:none;z-index:0}.hero>*{position:relative;z-index:1}
+.hero-logo{margin-bottom:40px}
+.hero-logo svg{height:80px}
+.hero h1{font-size:56px;font-weight:700;color:#1a1a1a;line-height:1.2;max-width:700px}
+.hero h1 span{display:block;font-size:20px;font-weight:400;color:#888;margin-top:8px}
+.hero p{font-size:18px;color:#666;max-width:560px;margin:28px 0 36px}
+.hero-btns{display:flex;gap:16px}
+.btn{display:inline-block;padding:14px 32px;border-radius:8px;font-size:15px;font-weight:600;text-decoration:none;cursor:pointer;border:none;transition:all .2s}
+.btn-dark{background:#2c2c2c;color:#fff}
+.btn-dark:hover{background:#4a4a4a}
+.btn-outline{border:2px solid #2c2c2c;color:#2c2c2c;background:transparent}
+.btn-outline:hover{background:#2c2c2c;color:#fff}
+
+/* ===== product ===== */
+.section-tag{font-size:13px;text-transform:uppercase;letter-spacing:3px;color:#999;margin-bottom:12px}
+.section-title{font-size:36px;font-weight:700;color:#1a1a1a;margin-bottom:16px}
+.section-desc{font-size:16px;color:#777;max-width:560px;margin-bottom:48px}
+
+.products{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.product-card{background:#fff;border-radius:10px;overflow:hidden;border:1px solid #eee;transition:all .3s;cursor:pointer}
+.product-card:hover{box-shadow:0 8px 30px rgba(0,0,0,0.08);transform:translateY(-2px)}
+.product-img{height:240px;background:#e8e8e4;position:relative;overflow:hidden}.product-img .slide{position:absolute;top:0;left:0;width:100%;height:100%;opacity:0;transition:opacity .4s;z-index:0}.product-img .slide.active{opacity:1;z-index:1}.product-img .slide img{width:100%;height:100%;object-fit:cover}.product-img .slide-nav{position:absolute;bottom:10px;left:50%;transform:translateX(-50%);display:flex;gap:6px;z-index:3}.slide-nav .dot{width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,0.5);cursor:pointer;transition:all .2s}.slide-nav .dot.active{background:#fff;transform:scale(1.3)}.product-img .slide-arrow{position:absolute;top:50%;transform:translateY(-50%);z-index:3;width:28px;height:28px;border-radius:50%;background:rgba(255,255,255,0.85);border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:14px;color:#333;opacity:0;transition:opacity .2s;line-height:1}.product-card:hover .slide-arrow{opacity:1}.slide-arrow.prev{left:8px}.slide-arrow.next{right:8px}
+.product-img .tag{position:absolute;top:12px;right:12px;background:#2c2c2c;color:#fff;font-size:12px;padding:4px 10px;border-radius:4px}
+.product-info{padding:20px}
+.product-info h3{font-size:17px;font-weight:600;margin-bottom:6px;color:#1a1a1a}
+.product-info .spec{font-size:13px;color:#999;margin-bottom:10px}
+.product-info .detail{font-size:14px;color:#666;line-height:1.6;margin-bottom:12px}.card-btn{display:inline-block;padding:7px 18px;border:1.5px solid #2c2c2c;border-radius:5px;font-size:13px;font-weight:600;color:#2c2c2c;background:transparent;cursor:pointer;transition:all .2s}.card-btn:hover{background:#2c2c2c;color:#fff}
+
+/* ===== advantages ===== */
+.advantages{display:grid;grid-template-columns:repeat(3,1fr);gap:32px;margin-top:48px}
+.adv-card{padding:36px 28px;background:#fff;border-radius:10px;border:1px solid #eee;transition:all .3s}
+.adv-card:hover{box-shadow:0 6px 24px rgba(0,0,0,0.06)}
+.adv-icon{font-size:32px;margin-bottom:20px}
+.adv-card h3{font-size:18px;font-weight:600;margin-bottom:10px;color:#1a1a1a}
+.adv-card p{font-size:14px;color:#777;line-height:1.7}
+
+/* ===== about ===== */
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center;margin-top:40px}
+.about-text h3{font-size:20px;font-weight:600;margin-bottom:12px;color:#1a1a1a}
+.about-text p{font-size:15px;color:#666;margin-bottom:16px}
+.about-visual{border-radius:12px;height:360px;overflow:hidden}.about-visual img{width:100%;height:100%;object-fit:cover}
+
+/* ===== process ===== */
+.process-steps{display:flex;gap:0;margin-top:48px;counter-reset:step}
+.process-step{flex:1;text-align:center;padding:0 16px;position:relative}
+.process-step::after{content:"";position:absolute;top:28px;left:calc(50% + 20px);width:calc(100% - 40px);height:1px;background:#ddd}
+.process-step:last-child::after{display:none}
+.step-num{width:56px;height:56px;border-radius:50%;background:#2c2c2c;color:#fff;display:flex;align-items:center;justify-content:center;font-size:20px;font-weight:700;margin:0 auto 16px}
+.process-step h4{font-size:16px;font-weight:600;margin-bottom:6px;color:#1a1a1a}
+.process-step p{font-size:13px;color:#999}
+
+/* ===== inquiry ===== */
+.inquiry{background:#1a1a1a;max-width:100vw;padding:80px 40px}
+.inquiry-inner{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:start}
+.inquiry-info .section-tag{color:#888}
+.inquiry-info .section-title{color:#f0f0f0}
+.inquiry-info .section-desc{color:#aaa}
+.contact-list{list-style:none;margin-top:24px}
+.contact-list li{color:#bbb;font-size:14px;margin-bottom:10px;padding-left:24px;position:relative}
+.contact-list li::before{content:"›";position:absolute;left:0;color:#666;font-size:18px;font-weight:700}
+.inquiry-form{background:#252525;padding:36px;border-radius:10px}
+.inquiry-form h3{color:#f0f0f0;font-size:20px;font-weight:600;margin-bottom:24px}
+.form-group{margin-bottom:18px}
+.form-group label{display:block;color:#aaa;font-size:13px;margin-bottom:6px}
+.form-group input,.form-group select,.form-group textarea{width:100%;padding:12px;background:#333;border:1px solid #444;border-radius:6px;color:#f0f0f0;font-size:14px;font-family:inherit;outline:none;transition:border .2s}
+.form-group input:focus,.form-group select:focus,.form-group textarea:focus{border-color:#888}
+.form-group textarea{resize:vertical;min-height:100px}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.form-submit{width:100%;padding:14px;background:#e0e0e0;color:#1a1a1a;border:none;border-radius:6px;font-size:15px;font-weight:600;cursor:pointer;transition:all .2s}
+.form-submit:hover{background:#fff}
+
+/* ===== scroll highlight ===== */
+@keyframes highlight{0%{box-shadow:0 0 0 0 rgba(44,44,44,0.3)}70%{box-shadow:0 0 0 20px rgba(44,44,44,0)}100%{box-shadow:0 0 0 0 rgba(44,44,44,0)}}
+.inquiry-highlight{animation:highlight 1.2s ease-out}
+
+/* ===== footer ===== */
+footer{text-align:center;padding:40px;color:#999;font-size:13px;border-top:1px solid #eee}
+footer span{color:#2c2c2c;font-weight:600}
+
+@media(max-width:900px){
+  .products{grid-template-columns:1fr 1fr}
+  .about-grid{grid-template-columns:1fr}
+  .inquiry-inner{grid-template-columns:1fr}
+  .hero h1{font-size:36px}
+  .advantages{grid-template-columns:1fr}
+  .process-steps{flex-wrap:wrap;gap:24px}
+  .process-step{flex:0 0 50%}
+  .process-step::after{display:none}
+  .nav-links{display:none}
+  .nav-links.show{display:flex!important;flex-direction:column;position:absolute;top:64px;left:0;right:0;background:rgba(255,255,255,0.98);padding:16px 40px;border-bottom:1px solid #e8e8e4;gap:16px}
+  .menu-toggle{display:block!important}
+}
+@media(max-width:600px){
+  .products{grid-template-columns:1fr}
+  .hero h1{font-size:28px}
+  section{padding:60px 20px}
+  .form-row{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<!-- Nav -->
+<nav>
+  <a href="#" class="nav-brand">
+    <svg viewBox="0 0 160 40" xmlns="http://www.w3.org/2000/svg">
+      <defs><linearGradient id="lg" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#4a4a4a"/><stop offset="100%" stop-color="#1a1a1a"/></linearGradient></defs>
+      <text x="0" y="17" font-size="14" font-weight="700" fill="#1a1a1a" font-family="sans-serif">Ti</text>
+      <text x="24" y="17" font-size="14" font-weight="700" fill="#999" font-family="sans-serif">22</text>
+      <path d="M50 8 C65 3,85 3,100 8" stroke="url(#lg)" stroke-width="1.8" fill="none" stroke-linecap="round"/>
+      <text x="36" y="30" font-size="17" font-weight="700" fill="#1a1a1a" font-family="sans-serif">钛 界</text>
+      <text x="80" y="30" font-size="10" fill="#999" font-family="sans-serif">Titanium World</text>
+    </svg>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#products">产品</a></li>
+    <li><a href="#advantages">优势</a></li>
+    <li><a href="#about">关于我们</a></li>
+    <li><a href="#inquiry" class="nav-cta">立即询盘</a></li>
+  </ul>
+</nav>
+
+<!-- Hero -->
+<section class="hero">
+  <div class="hero-logo">
+    <svg viewBox="0 0 340 120" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <linearGradient id="grad1" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#6a6a6a"/><stop offset="100%" stop-color="#1a1a1a"/></linearGradient>
+        <linearGradient id="grad2" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#888"/><stop offset="100%" stop-color="#333"/></linearGradient>
+      </defs>
+      <circle cx="52" cy="52" r="46" fill="none" stroke="url(#grad1)" stroke-width="3"/>
+      <path d="M10 70 C10 70,30 40,52 35 C74 30,94 40,94 70" fill="none" stroke="url(#grad1)" stroke-width="3" stroke-linecap="round"/>
+      <path d="M10 52 C10 52,30 30,52 28 C74 26,94 35,94 52" fill="none" stroke="url(#grad1)" stroke-width="1.5" stroke-linecap="round" opacity="0.4"/>
+      <text x="28" y="68" font-size="32" font-weight="800" fill="#1a1a1a" font-family="sans-serif" letter-spacing="-1">Ti</text>
+      <text x="68" y="62" font-size="13" font-weight="700" fill="#888" font-family="sans-serif">22</text>
+      <text x="120" y="48" font-size="42" font-weight="800" fill="#1a1a1a" font-family="sans-serif" letter-spacing="4">钛 界</text>
+      <text x="128" y="72" font-size="14" fill="#999" font-family="sans-serif" letter-spacing="6">TITANIUM WORLD</text>
+      <line x1="130" y1="82" x2="310" y2="82" stroke="#ddd" stroke-width="1"/>
+      <text x="130" y="98" font-size="11" fill="#bbb" font-family="sans-serif" letter-spacing="2">BAOJI · CHINA</text>
+    </svg>
+  </div>
+  <h1>钛合金小配件定制专家<span>宝鸡钛谷 · 设计驱动 · 从图纸到成品</span></h1>
+  <p>依托中国钛都宝鸡的全产业链优势，结合原创设计能力，为品牌商、户外玩家、咖啡茶器爱好者提供钛合金定制服务。来图来样，小批量起订。</p>
+  <div class="hero-btns">
+    <a href="#inquiry" class="btn btn-dark">咨询定制</a>
+    <a href="#products" class="btn btn-outline">浏览产品</a>
+  </div>
+</section>
+
+<!-- Products -->
+<section id="products">
+  <div class="section-tag">Products</div>
+  <div class="section-title">精选产品</div>
+  <div class="section-desc">以下为部分已量产的钛合金配件，均可按您的要求修改尺寸、表面处理、刻字等。没有看到合适的？直接联系我们，来图定制。</div>
+  <div class="products">
+    <div class="product-card">
+      <div class="product-img">
+        <div class="slide active"><img src="images/product1.jpg" alt="钛合金EDC挂钩" loading="lazy"></div>
+        <div class="slide"><img src="images/product1-2.jpg" alt="钛合金EDC挂钩" loading="lazy"></div>
+        <div class="slide"><img src="images/product1-3.jpg" alt="钛合金EDC挂钩" loading="lazy"></div>
+        <button class="slide-arrow prev" aria-label="上一张">‹</button>
+        <button class="slide-arrow next" aria-label="下一张">›</button>
+        <div class="slide-nav"><span class="dot active"></span><span class="dot"></span><span class="dot"></span></div>
+        <span class="tag">可定制</span>
+      </div>
+      <div class="product-info">
+        <h3>钛合金EDC挂钩</h3>
+        <div class="spec">TC4钛合金 · 阳极氧化色 · 承重30kg</div>
+        <div class="detail">轻量便携，支持激光刻字和多种颜色表面处理，户外露营热销品。</div>
+        <button class="card-btn">定制询盘 →</button>
+      </div>
+    </div>
+    <div class="product-card">
+      <div class="product-img">
+        <div class="slide active"><img src="images/product2.jpg" alt="钛合金多功能开瓶器" loading="lazy"></div>
+        <div class="slide"><img src="images/product2-2.jpg" alt="钛合金多功能开瓶器" loading="lazy"></div>
+        <div class="slide"><img src="images/product2-3.jpg" alt="钛合金多功能开瓶器" loading="lazy"></div>
+        <button class="slide-arrow prev" aria-label="上一张">‹</button>
+        <button class="slide-arrow next" aria-label="下一张">›</button>
+        <div class="slide-nav"><span class="dot active"></span><span class="dot"></span><span class="dot"></span></div>
+        <span class="tag">可定制</span>
+      </div>
+      <div class="product-info">
+        <h3>钛合金多功能开瓶器</h3>
+        <div class="spec">GR5钛合金 · 石洗/喷砂 · 一体成型</div>
+        <div class="detail">集开瓶、扳手、撬棍功能于一体，EDC玩家高复购单品。</div>
+        <button class="card-btn">定制询盘 →</button>
+      </div>
+    </div>
+    <div class="product-card">
+      <div class="product-img">
+        <div class="slide active"><img src="images/product3.jpg" alt="钛合金咖啡搅拌棒" loading="lazy"></div>
+        <div class="slide"><img src="images/product3-2.jpg" alt="钛合金咖啡搅拌棒" loading="lazy"></div>
+        <div class="slide"><img src="images/product3-3.jpg" alt="钛合金咖啡搅拌棒" loading="lazy"></div>
+        <button class="slide-arrow prev" aria-label="上一张">‹</button>
+        <button class="slide-arrow next" aria-label="下一张">›</button>
+        <div class="slide-nav"><span class="dot active"></span><span class="dot"></span><span class="dot"></span></div>
+        <span class="tag">可定制</span>
+      </div>
+      <div class="product-info">
+        <h3>钛合金咖啡搅拌棒</h3>
+        <div class="spec">纯钛TA2 · 双头设计 · 食品级安全</div>
+        <div class="detail">不生锈、不串味，适合精品咖啡店定制品牌logo。</div>
+        <button class="card-btn">定制询盘 →</button>
+      </div>
+    </div>
+    <div class="product-card">
+      <div class="product-img">
+        <div class="slide active"><img src="images/product4.jpg" alt="钛合金异形小零件" loading="lazy"></div>
+        <div class="slide"><img src="images/product4-2.jpg" alt="钛合金异形小零件" loading="lazy"></div>
+        <div class="slide"><img src="images/product4-3.jpg" alt="钛合金异形小零件" loading="lazy"></div>
+        <button class="slide-arrow prev" aria-label="上一张">‹</button>
+        <button class="slide-arrow next" aria-label="下一张">›</button>
+        <div class="slide-nav"><span class="dot active"></span><span class="dot"></span><span class="dot"></span></div>
+        <span class="tag">来图定制</span>
+      </div>
+      <div class="product-info">
+        <h3>钛合金异形小零件</h3>
+        <div class="spec">CNC五轴加工 · ±0.02mm精度 · 表面处理可选</div>
+        <div class="detail">接受来图来样，从单件打样到小批量生产，工业零件到创意配件全覆盖。</div>
+        <button class="card-btn">定制询盘 →</button>
+      </div>
+    </div>
+    <div class="product-card">
+      <div class="product-img">
+        <div class="slide active"><img src="images/product5.jpg" alt="钛合金快挂扣" loading="lazy"></div>
+        <div class="slide"><img src="images/product5-2.jpg" alt="钛合金快挂扣" loading="lazy"></div>
+        <div class="slide"><img src="images/product5-3.jpg" alt="钛合金快挂扣" loading="lazy"></div>
+        <button class="slide-arrow prev" aria-label="上一张">‹</button>
+        <button class="slide-arrow next" aria-label="下一张">›</button>
+        <div class="slide-nav"><span class="dot active"></span><span class="dot"></span><span class="dot"></span></div>
+        <span class="tag">可定制</span>
+      </div>
+      <div class="product-info">
+        <h3>钛合金快挂扣</h3>
+        <div class="spec">TC4钛合金 · 超轻设计 · 多种规格</div>
+        <div class="detail">背包、钥匙扣、宠物项圈通用配件，支持定制尺寸和颜色。</div>
+        <button class="card-btn">定制询盘 →</button>
+      </div>
+    </div>
+    <div class="product-card">
+      <div class="product-img">
+        <div class="slide active"><img src="images/product6.jpg" alt="钛合金定制件" loading="lazy"></div>
+        <div class="slide"><img src="images/product6-2.jpg" alt="钛合金定制件" loading="lazy"></div>
+        <div class="slide"><img src="images/product6-3.jpg" alt="钛合金定制件" loading="lazy"></div>
+        <button class="slide-arrow prev" aria-label="上一张">‹</button>
+        <button class="slide-arrow next" aria-label="下一张">›</button>
+        <div class="slide-nav"><span class="dot active"></span><span class="dot"></span><span class="dot"></span></div>
+        <span class="tag">来图定制</span>
+      </div>
+      <div class="product-info">
+        <h3>钛合金定制件</h3>
+        <div class="spec">您的设计 · 我们的工艺 · 起订量灵活</div>
+        <div class="detail">有想法？发图纸过来，我们帮您从设计优化到成品交付，一站式搞定。</div>
+        <button class="card-btn">定制询盘 →</button>
+      </div>
+    </div>  </div>
+</section>
+
+<!-- Advantages -->
+<section id="advantages">
+  <div class="section-tag">Why Us</div>
+  <div class="section-title">为什么选择钛界</div>
+  <div class="section-desc">宝鸡直供 + 原创设计，不是纯贸易，是带制造能力的定制服务。</div>
+  <div class="advantages">
+    <div class="adv-card">
+      <div class="adv-icon">🏭</div>
+      <h3>宝鸡钛谷直供</h3>
+      <p>坐拥中国最大钛产业集群，从海绵钛到深加工全链条覆盖。省去中间环节，成本可控，交期可靠。</p>
+    </div>
+    <div class="adv-card">
+      <div class="adv-icon">🎨</div>
+      <h3>原创设计驱动</h3>
+      <p>不是照搬市场的倒货商。我们有自己的设计师，能为客户提供从概念草图到3D渲染的完整方案。</p>
+    </div>
+    <div class="adv-card">
+      <div class="adv-icon">⚡</div>
+      <h3>小批量灵活起订</h3>
+      <p>不像大厂动辄几千件起订。打样试单、小批量定制我们都接，降低您的试错成本。</p>
+    </div>
+  </div>
+</section>
+
+<!-- About -->
+<section id="about">
+  <div class="section-tag">About</div>
+  <div class="section-title">关于钛界</div>
+  <div class="about-grid">
+    <div class="about-text">
+      <h3>宝鸡 · 中国钛谷</h3>
+      <p>钛界坐落于中国钛产业核心区——陕西宝鸡。这里钛材产量占全国 60% 以上，拥有从海绵钛熔炼、锻造、轧制到精密加工的完整产业生态。</p>
+      <h3>设计 × 制造</h3>
+      <p>我们不是传统的加工厂，也不是纯粹的贸易商。钛界的核心能力在于「设计+供应链」的组合——用设计师的视角理解客户需求，用本地制造生态完成交付。</p>
+      <h3>服务模式</h3>
+      <p>来图定制 / 来样复刻 / 联合开发。无论您是品牌商需要 OEM，还是个人想打造一件独一无二的钛合金单品，我们都能承接。</p>
+    </div>
+    <div class="about-visual"><img src="images/factory.jpg" alt="宝鸡钛谷工厂实景" loading="lazy">
+    </div>
+  </div>
+</section>
+
+<!-- Process -->
+<section>
+  <div class="section-tag">Process</div>
+  <div class="section-title">定制流程</div>
+  <div class="process-steps">
+    <div class="process-step">
+      <div class="step-num">1</div>
+      <h4>需求沟通</h4>
+      <p>告诉我们您的想法、参考图或使用场景</p>
+    </div>
+    <div class="process-step">
+      <div class="step-num">2</div>
+      <h4>方案设计</h4>
+      <p>出3D图纸/渲染图，确认尺寸和细节</p>
+    </div>
+    <div class="process-step">
+      <div class="step-num">3</div>
+      <h4>打样确认</h4>
+      <p>CNC加工样品，您确认外观和手感</p>
+    </div>
+    <div class="process-step">
+      <div class="step-num">4</div>
+      <h4>批量交付</h4>
+      <p>小批量生产，质检后发货</p>
+    </div>
+  </div>
+</section>
+
+<!-- Inquiry -->
+<section id="inquiry" class="inquiry">
+  <div class="inquiry-inner">
+    <div class="inquiry-info">
+      <div class="section-tag">Contact</div>
+      <div class="section-title">开始您的定制</div>
+      <div class="section-desc">留下您的需求，我们会在 24 小时内回复。支持微信、电话、邮件沟通，也可直接发送图纸到邮箱。</div>
+      <ul class="contact-list">
+        <li>微信：LX Jason</li>
+        <li>邮箱：455582572@qq.com</li>
+        <li>地址：陕西省宝鸡市钛谷产业区</li>
+        <li>起订量：1 件打样，小批量生产灵活</li>
+      </ul>
+    </div>
+    <div class="inquiry-form">
+      <h3>定制询盘</h3>
+      <div class="form-row">
+        <div class="form-group">
+          <label>姓名 *</label>
+          <input type="text" placeholder="您的名字">
+        </div>
+        <div class="form-group">
+          <label>电话 / 微信 *</label>
+          <input type="text" placeholder="手机号或微信号">
+        </div>
+      </div>
+      <div class="form-group">
+        <label>需求类型</label>
+        <select>
+          <option>来图定制</option>
+          <option>来样复刻</option>
+          <option>现有产品改款</option>
+          <option>批量采购</option>
+          <option>其他</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>需求描述</label>
+        <textarea placeholder="请描述您想要的产品类型、材质要求、数量、预算范围等信息。如果有图纸，可先描述大致想法。"></textarea>
+      </div>
+      <button class="form-submit">提交询盘</button>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer>
+  <span>钛界 Titanium World</span> &copy; 2026 · 宝鸡钛合金定制配件 · 设计驱动制造
+</footer>
+
+<script>
+// ===== 移动端菜单 =====
+(function(){
+  var nav = document.querySelector("nav");
+  var links = document.querySelector(".nav-links");
+  var btn = document.createElement("button");
+  btn.className = "menu-toggle";
+  btn.innerHTML = '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#2c2c2c" stroke-width="2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>';
+  nav.insertBefore(btn, links);
+  btn.addEventListener("click",function(){links.classList.toggle("show")});
+  links.querySelectorAll("a").forEach(function(a){a.addEventListener("click",function(){links.classList.remove("show")})});
+})();
+
+
+
+// ===== 产品卡片轮播 =====
+document.querySelectorAll(".product-card").forEach(function(card){
+  var slides = card.querySelectorAll(".slide");
+  var dots = card.querySelectorAll(".dot");
+  var prev = card.querySelector(".slide-arrow.prev");
+  var next = card.querySelector(".slide-arrow.next");
+  var current = 0;
+  
+  function goTo(n){
+    slides[current].classList.remove("active");
+    dots[current].classList.remove("active");
+    current = (n + slides.length) % slides.length;
+    slides[current].classList.add("active");
+    dots[current].classList.add("active");
+  }
+  
+  prev.addEventListener("click",function(e){e.stopPropagation();goTo(current-1)});
+  next.addEventListener("click",function(e){e.stopPropagation();goTo(current+1)});
+  
+  dots.forEach(function(dot,i){
+    dot.addEventListener("click",function(e){e.stopPropagation();goTo(i)});
+  });
+  
+  // 卡片按钮 → 滚动到询盘区
+  var btn = card.querySelector(".card-btn");
+  btn.addEventListener("click",function(e){
+    e.stopPropagation();
+    var s=document.querySelector("#inquiry");
+    s.scrollIntoView({behavior:"smooth"});
+    s.classList.add("inquiry-highlight");
+    setTimeout(function(){s.classList.remove("inquiry-highlight")},1200);
+  });
+});
+
+// ===== 询盘表单提交 =====
+(function(){
+  var form = document.querySelector(".inquiry-form");
+  var btn = form.querySelector(".form-submit");
+  var inputs = form.querySelectorAll("input,select,textarea");
+  
+  function resetForm() {
+    btn.textContent = "提交询盘";
+    btn.disabled = false;
+    btn.style.opacity = "1";
+    btn.style.background = "#e0e0e0";
+    btn.style.color = "#1a1a1a";
+    inputs.forEach(function(el){el.disabled=false});
+  }
+  
+  btn.addEventListener("click",function(e){
+    e.preventDefault();
+    var name = inputs[0].value.trim();
+    var contact = inputs[1].value.trim();
+    if(!name){alert("请填写姓名");inputs[0].focus();return;}
+    if(!contact){alert("请填写电话或微信");inputs[1].focus();return;}
+    
+    btn.textContent = "提交中…";
+    btn.disabled = true;
+    btn.style.opacity = "0.7";
+    
+    var formData = new URLSearchParams();
+    formData.append("name", name);
+    formData.append("contact", contact);
+    formData.append("type", inputs[2].value);
+    formData.append("description", inputs[3].value);
+    
+    fetch("/api/inquiry", {
+      method: "POST",
+      headers: {"Content-Type": "application/x-www-form-urlencoded"},
+      body: formData.toString()
+    })
+    .then(function(r){return r.json()})
+    .then(function(data){
+      if(data.success){
+        btn.textContent = "\u2713 提交成功，我们会尽快联系您";
+        btn.style.background = "#4caf50";
+        btn.style.color = "#fff";
+        btn.style.opacity = "1";
+        inputs.forEach(function(el){el.disabled=true});
+      }else{
+        alert(data.message || "提交失败，请重试");
+        resetForm();
+      }
+    })
+    .catch(function(err){
+      alert("网络错误，请稍后重试或直接发送邮件至 455582572@qq.com");
+      resetForm();
+    });
+  });
+  
+  form.addEventListener("keydown",function(e){
+    if(e.key==="Enter"&&e.target.tagName!=="TEXTAREA"){e.preventDefault();btn.click()}
+  });
+})();
+
+// ===== 导航平滑滚动 =====
+document.querySelectorAll("a[href^=\"#\"]").forEach(function(a){
+  a.addEventListener("click",function(e){
+    var target = document.querySelector(this.getAttribute("href"));
+    if(target){e.preventDefault();target.scrollIntoView({behavior:"smooth"})}
+  });
+});
+</script>
+
+</body>
+</html>
