@@ -480,17 +480,20 @@ document.querySelectorAll(".product-card").forEach(function(card){
     btn.disabled = true;
     btn.style.opacity = "0.7";
     
-    var formData = new URLSearchParams();
-    formData.append("name", name);
-    formData.append("contact", contact);
-    formData.append("type", inputs[2].value);
-    formData.append("description", inputs[3].value);
+    var formData = {
+      name: name,
+      contact: contact,
+      type: inputs[2].value,
+      description: inputs[3].value,
+      _subject: "[钛界询盘] " + name,
+      _captcha: "false",
+      _template: "table"
+    };
     
-    // 优先使用本地API，失败则提示邮件联系
-    fetch("/api/inquiry", {
+    fetch("https://formsubmit.co/ajax/455582572@qq.com", {
       method: "POST",
-      headers: {"Content-Type": "application/x-www-form-urlencoded"},
-      body: formData.toString()
+      headers: {"Content-Type": "application/json", "Accept": "application/json"},
+      body: JSON.stringify(formData)
     })
     .then(function(r){return r.json()})
     .then(function(data){
@@ -506,12 +509,8 @@ document.querySelectorAll(".product-card").forEach(function(card){
       }
     })
     .catch(function(err){
-      btn.textContent = "\u2713 已收到，我们会尽快联系您";
-      btn.style.background = "#4caf50";
-      btn.style.color = "#fff";
-      btn.style.opacity = "1";
-      inputs.forEach(function(el){el.disabled=true});
-      alert("提交成功！您也可以直接发送邮件至 455582572@qq.com 获取更快回复。");
+      alert("提交失败，请直接发送邮件至 455582572@qq.com");
+      resetForm();
     });
   });
   
