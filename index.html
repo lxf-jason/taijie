@@ -229,7 +229,7 @@ footer span{color:#2c2c2c;font-weight:600}
 </nav>
 
 <!-- Hero -->
-<section class="hero">
+<section class="hero" data-section="hero">
   <div class="hero-logo">
     <svg viewBox="0 0 340 120" xmlns="http://www.w3.org/2000/svg">
       <defs>
@@ -256,7 +256,7 @@ footer span{color:#2c2c2c;font-weight:600}
 </section>
 
 <!-- Products -->
-<section id="products">
+<section id="products" data-section="products">
   <div class="section-tag">Products</div>
   <div class="section-title" id="products-title" >精选产品</div>
   <div class="section-desc" id="products-desc" >以下为部分已量产的钛合金配件，均可按您的要求修改尺寸、表面处理、刻字等。没有看到合适的？直接联系我们，来图定制。</div>
@@ -366,7 +366,7 @@ footer span{color:#2c2c2c;font-weight:600}
   </div>
 </section>
 <!-- Advantages -->
-<section id="advantages">
+<section id="advantages" data-section="advantages">
   <div class="section-tag">Why Us</div>
   <div class="section-title">为什么选择钛界</div>
   <div class="section-desc">宝鸡直供 + 原创设计，不是纯贸易，是带制造能力的定制服务。</div>
@@ -389,7 +389,7 @@ footer span{color:#2c2c2c;font-weight:600}
   </div>
 </section>
 <!-- Product Showcase -->
-<section id="showcase">
+<section id="showcase" data-section="showcase">
   <div class="section-tag">Shop</div>
   <div class="showcase-header">
     <div style="flex:1">
@@ -415,7 +415,7 @@ footer span{color:#2c2c2c;font-weight:600}
 
 
 <!-- About -->
-<section id="about">
+<section id="about" data-section="about">
   <div class="section-tag">About</div>
   <div class="section-title">关于钛界</div>
   <div class="about-grid">
@@ -432,7 +432,7 @@ footer span{color:#2c2c2c;font-weight:600}
   </div>
 </section>
 
-<!-- Process -->
+<section data-section="process">
 <section>
   <div class="section-tag">Process</div>
   <div class="section-title">定制流程</div>
@@ -461,7 +461,7 @@ footer span{color:#2c2c2c;font-weight:600}
 </section>
 
 <!-- Inquiry -->
-<section id="inquiry" class="inquiry">
+<section id="inquiry" data-section="inquiry" class="inquiry">
   <div class="inquiry-inner">
     <div class="inquiry-info">
       <div class="section-tag">Contact</div>
@@ -672,49 +672,9 @@ document.querySelectorAll("a[href^=\"#\"]").forEach(function(a){
 });
 
 // ===== 产品数据 (可直接修改) =====
-var PRODUCTS = [
-  {
-    id:"p1", cat:"edc-hook", name:"钛合金EDC挂钩",
-    spec:"TC4钛合金 · 阳极氧化色 · 承重30kg",
-    price:88, imgs:["product1.jpg","product1-2.jpg","product1-3.jpg"]
-  },
-  {
-    id:"p2", cat:"opener", name:"钛合金多功能开瓶器",
-    spec:"GR5钛合金 · 石洗/喷砂 · 一体成型",
-    price:68, imgs:["product2.jpg","product2-2.jpg","product2-3.jpg"]
-  },
-  {
-    id:"p3", cat:"stirrer", name:"钛合金咖啡搅拌棒",
-    spec:"纯钛TA2 · 双头设计 · 食品级安全",
-    price:38, imgs:["product3.jpg","product3-2.jpg","product3-3.jpg"]
-  },
-  {
-    id:"p4", cat:"fastener", name:"钛合金销钉&螺钉",
-    spec:"TC4/GR5 · CNC精密加工 · 多种规格",
-    price:38, imgs:["product4.jpg","product4-2.jpg","product4-3.jpg"]
-  },
-  {
-    id:"p5", cat:"quick-hook", name:"钛合金快速挂钩",
-    spec:"TC4钛合金 · 超轻设计 · 承重50kg",
-    price:98, imgs:["product5.jpg","product5-2.jpg","product5-3.jpg"]
-  },
-  {
-    id:"p6", cat:"custom", name:"钛合金定制配件",
-    spec:"来图定制 · 您的设计 · 我们的工艺",
-    price:8, imgs:["product6.jpg","product6-2.jpg","product6-3.jpg"]
-  }
-];
-
+var PRODUCTS = []
 // ===== 分类管理 (可直接修改) =====
-var CATEGORIES = {
-  "edc-hook":"钛合金EDC挂钩",
-  "opener":"钛合金多功能开瓶器",
-  "stirrer":"钛合金咖啡搅拌棒",
-  "fastener":"钛合金销钉&螺钉",
-  "quick-hook":"钛合金快速挂钩",
-  "custom":"钛合金定制配件"
-};
-
+var CATEGORIES = {}
 // ===== 购物车 =====
 var cart = JSON.parse(localStorage.getItem("taijieCart") || "[]");
 function saveCart(){localStorage.setItem("taijieCart",JSON.stringify(cart));updateCartUI()}
@@ -918,6 +878,7 @@ document.getElementById("checkoutSubmit").addEventListener("click",function(){
   });
 });
 </script>
+
 
 </body>
 </html>
